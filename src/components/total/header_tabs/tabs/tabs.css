@@ -1,0 +1,10 @@
+p:hover{
+  /* font-size: 14px; */
+  color: #1af037;
+}
+/* p:visited{
+  color: #ffffff
+} */
+select:focus-visible{
+  outline: 0px solid #fff
+}

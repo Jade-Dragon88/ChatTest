@@ -1,0 +1,22 @@
+.NAME{
+  margin: 0 5px;
+  color: #999999;
+  font-size: 13px;
+  line-height: 14px;
+}
+.TEXT{
+  font-size: 13px;
+  line-height: 15px;
+}
+.MESSAGETIME{
+  font-size: 12px;
+  line-height: 12px;
+  margin-left: 10px;
+  color: #FFFFFF;
+  opacity: 0.4;
+}
+.LVL{
+  color: #23B838;
+  font-size: 13px;
+  line-height: 14px;
+}
