@@ -61,14 +61,26 @@ class Total extends Component {
       },
     ]
   }
-
+  autoScrollActive = true; 
   componentDidMount(){
     console.log('TOTAL mount');
     this.getMsgs();
+    // autoScroll();
   }
   componentDidUpdate(){
     console.log('TOTAL update');
-    autoScroll();
+    if (this.autoScrollActive){
+      autoScroll();
+      this.autoScrollActive = false;
+    }
+    let CHATFIELD = document.querySelector('.CHATFIELD');
+    CHATFIELD.addEventListener('scroll',()=>{
+      let CHATFIELD_scrollTop = CHATFIELD.scrollTop;
+      if (CHATFIELD_scrollTop<=100){
+        // console.log('DONE')
+        // this.getMsgs();
+      }
+    })
   }
   componentWillUnmount(){
     console.log('TOTAL UNmount');

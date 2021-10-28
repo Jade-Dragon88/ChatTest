@@ -1,12 +1,12 @@
 
-export default function AutoScroll() {
+export default function AutoScroll(props) {
   let CHATFIELD = (document.querySelector('.CHATFIELD')) || null;
-  if(!CHATFIELD){
-    console.log('Объект CHATFIELD НЕ найден')
+  if(CHATFIELD){
+    let chatFieldContent = document.querySelector('.chatFieldContent');
+    console.log('Объект CHATFIELD найден/активен')
+    CHATFIELD.scrollTo(0, chatFieldContent.clientHeight);
   }
   else{
-    let chatFieldContent = document.querySelector('.chatFieldContent');
-    console.log('Объект CHATFIELD найден')
-    CHATFIELD.scrollTo(0, chatFieldContent.clientHeight);
+    console.log('Объект CHATFIELD НЕ найден или НЕ активен');
   }
 }

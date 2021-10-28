@@ -1,0 +1,16 @@
+    /* фон самого скроллбара */
+.CHATFIELD::-webkit-scrollbar{ 
+  width: 10px; 
+  background-color: #00000020;
+}
+    /* кнопки направления*/
+.CHATFIELD::-webkit-scrollbar-button{
+}
+    /* пустое пространство под индикатором прокрутки */
+.CHATFIELD::-webkit-scrollbar-track{
+}
+    /* индикатор прокрутки, перетаскиваемый элемент */
+.CHATFIELD::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: #00000060;
+}

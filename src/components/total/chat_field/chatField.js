@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ChatFieldTab from './chatField_tabs/chatField_tab'
+import './chatField.css'
 
 const StyledChatFieldDiv = styled.div`
   position: relative;
@@ -11,14 +12,14 @@ const StyledChatFieldDiv = styled.div`
   /* outline: 1px solid blue; */
   overflow-y: auto;
 `
-const StyledTabDiv = styled.div`
-  display: ${props=>props.display? 'block' : 'none'};
-  position: absolute;
-  /* border: 2px solid ${props=>props.borderColor}; */
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-`
+// const StyledTabDiv = styled.div`
+//   display: ${props=>props.display? 'block' : 'none'};
+//   position: absolute;
+//   /* border: 2px solid ${props=>props.borderColor}; */
+//   box-sizing: border-box;
+//   width: 100%;
+//   height: 100%;
+// `
 let newKey = () => {return Math.random().toString(36).substr(2, 7);};
 export default function ChatField(props) {
   const {numOfActiveTab,numOfTabs,messages} = props;
