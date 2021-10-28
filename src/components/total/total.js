@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 // import './total.css'
-import styled from 'styled-components'
-// import axios from 'axios'
-import Header from './header_tabs/header'
-import ChatField from './chat_field/chatField'
-import Footer from './footer_input/footer'
-
-
+import styled from 'styled-components';
+import autoScroll from '../autoScroll/autoScroll';
+import Header from './header_tabs/header';
+import ChatField from './chat_field/chatField';
+import Footer from './footer_input/footer';
 import GetMessages from '../../services/GetMessages';
-// const getMessages = new GetMessages();
-let messagesFromBase;
-// getMessages.getMessages()
-//             .then(res => {messagesFromBase = res;
-//                           console.log(res);
-//                         }
-//                 );
 
-
-                // console.log(messagesFromBase);
 const StyledTotalDiv = styled.div`
   position: absolute;
   width: 360px;
@@ -29,10 +18,6 @@ const StyledTotalDiv = styled.div`
   z-index:-1;
 `
 class Total extends Component {
-  constructor(props) {
-    super(props);
-    this.getMsgs();
-  }
 
   state = {
     numOfActiveTab: 0,
@@ -45,7 +30,7 @@ class Total extends Component {
         ada: false,
         admin: false,
         moder: false,
-        time:'14:28'
+        createdAt:'2021-10-27T14:28:00.368Z'
       },
       { from : 'Nigativ',
         text : 'wac можно только купить',
@@ -54,7 +39,7 @@ class Total extends Component {
         ada: false,
         admin: false,
         moder: false,
-        time:'14:28'
+        createdAt:'2021-10-27T14:28:00.368Z'
       },
       { from : 'Skylifesky',
         text : 'Цена 1 wac =0,1$ и цена не изменится',
@@ -63,7 +48,7 @@ class Total extends Component {
         ada: false,
         admin: false,
         moder: false,
-        time:'14:28'
+        createdAt:'2021-10-27T14:28:00.368Z'
       },
       { from : 'me',
         text : 'Сегодня идем на Германию',
@@ -72,24 +57,33 @@ class Total extends Component {
         ada: false,
         admin: false,
         moder: false,
-        time:'14:28'
+        createdAt:'2021-10-27T14:28:00.368Z'
       },
     ]
   }
 
+  componentDidMount(){
+    console.log('TOTAL mount');
+    this.getMsgs();
+  }
+  componentDidUpdate(){
+    console.log('TOTAL update');
+    autoScroll();
+  }
+  componentWillUnmount(){
+    console.log('TOTAL UNmount');
+  }
+
   getMessages = new GetMessages();
 
-  getMsgs =()=>{
+  getMsgs = async ()=>{
     let newState;
-    this.getMessages
+    await this.getMessages
         .getMessages()
         .then(res => {
           this.setState(()=>{
             console.log(res);
             newState = this.state;
-            // let reverseRes=[];
-            // res.forEach(item => reverseRes.unshift(item));
-            // return (newState.messages = (reverseRes));
             res.forEach(item => newState.messages.unshift(item));
             console.log(newState);
             return newState;
@@ -113,23 +107,24 @@ class Total extends Component {
               ada: false,
               admin: false,
               moder: false,
-              time: `${(new Date()).getHours()}:${(new Date()).getMinutes()}`,
+              createdAt: `${(new Date()).getHours()}:${(new Date()).getMinutes()}`,
           };
-          console.log('messages');
-          console.log(messages);
+          // console.log('messages');
+          // console.log(messages);
           const newMessageArr = [...messages, newMessage];
-          console.log('newMessageArr');
-          console.log(newMessageArr);
+          // console.log('newMessageArr');
+          // console.log(newMessageArr);
           const newState = this.state;
-          console.log('newStateBeforeChange');
-          console.log(newState);
+          // console.log('newStateBeforeChange');
+          // console.log(newState);
           newState.messages = newMessageArr;
-          console.log('newState');
-          console.log(newState);
+          // console.log('newState');
+          // console.log(newState);
           return newState;
     })
   }
   render() {
+    console.log('TOTAL from render');
     let {tabs,numOfActiveTab,messages} = this.state;
     // console.log(messages);
     return (

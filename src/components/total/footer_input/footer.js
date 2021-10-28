@@ -41,6 +41,7 @@ export default function Footer(props) {
                   onSubmit={(e)=>{
                     e.preventDefault();
                     props.addMsg(inputValue);
+                    console.log('from FOOTER')
                     console.log(inputValue);
                     inputValue =('');
                   }}>
