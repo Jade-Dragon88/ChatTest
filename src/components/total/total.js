@@ -61,47 +61,57 @@ class Total extends Component {
       },
     ]
   }
-  autoScrollActive = true; 
   componentDidMount(){
-    console.log('TOTAL mount');
     this.getMsgs();
-    // autoScroll();
   }
+  autoScrollActive = true;
   componentDidUpdate(){
-    console.log('TOTAL update');
     if (this.autoScrollActive){
       autoScroll();
       this.autoScrollActive = false;
     }
-    let CHATFIELD = document.querySelector('.CHATFIELD');
-    CHATFIELD.addEventListener('scroll',()=>{
-      let CHATFIELD_scrollTop = CHATFIELD.scrollTop;
-      if (CHATFIELD_scrollTop<=100){
-        // console.log('DONE')
-        // this.getMsgs();
-      }
-    })
+    this.onScroll();
   }
   componentWillUnmount(){
-    console.log('TOTAL UNmount');
+  }
+  scrollValue = 0;
+  chatFieldHeight = 0;
+  onScroll = () => {
+    const chatField = document.querySelector('.CHATFIELD');
+    const scrollListener = ()=>{
+      const chatFieldScrollTop = chatField.scrollTop;
+      if (chatFieldScrollTop<=200 && chatFieldScrollTop>=150){
+        chatField.removeEventListener('scroll',scrollListener)
+        console.log('!!! EventListener удален !!!');
+        this.getMsgs();
+      }
+    }
+    chatField.addEventListener('scroll',scrollListener)
+    console.log('DONE');
   }
 
   getMessages = new GetMessages();
-
+  apiSkip = 0;
+  apiLimit = 5;
   getMsgs = async ()=>{
+    const chatField = document.querySelector('.CHATFIELD');
+    this.scrollValue = chatField.scrollHeight;
+    // console.log(`scrollValue перед обновлением = ${this.scrollValue}`);
     let newState;
     await this.getMessages
-        .getMessages()
-        .then(res => {
-          this.setState(()=>{
-            console.log(res);
-            newState = this.state;
-            res.forEach(item => newState.messages.unshift(item));
-            console.log(newState);
-            return newState;
-          })
-        });
-        // console.log(this.state);
+          .getMessages(this.apiSkip,this.apiLimit)
+          .then(res => {
+            this.setState(()=>{
+              newState = this.state;
+              res.forEach(item => newState.messages.unshift(item));
+              return newState;
+            })
+          });
+    console.log('Сообщения обновлены');
+    chatField.scrollTo(0,(chatField.scrollHeight - this.scrollValue));
+    this.scrollValue = chatField.scrollHeight;
+    this.apiSkip+=this.apiLimit;
+    // console.log(`scrollValue после обновления = ${this.scrollValue}`);
   }
 
   setNumOfActiveTab = (tabIndex) => {
@@ -121,24 +131,14 @@ class Total extends Component {
               moder: false,
               createdAt: `${(new Date()).getHours()}:${(new Date()).getMinutes()}`,
           };
-          // console.log('messages');
-          // console.log(messages);
           const newMessageArr = [...messages, newMessage];
-          // console.log('newMessageArr');
-          // console.log(newMessageArr);
           const newState = this.state;
-          // console.log('newStateBeforeChange');
-          // console.log(newState);
           newState.messages = newMessageArr;
-          // console.log('newState');
-          // console.log(newState);
           return newState;
     })
   }
   render() {
-    console.log('TOTAL from render');
     let {tabs,numOfActiveTab,messages} = this.state;
-    // console.log(messages);
     return (
       <StyledTotalDiv className="TOTAL">
         <Header tabs={tabs} 
@@ -146,7 +146,9 @@ class Total extends Component {
                 numOfActiveTab={numOfActiveTab}/>
         <ChatField numOfTabs={tabs.length} 
                   numOfActiveTab={numOfActiveTab} 
-                  messages={messages}/>
+                  messages={messages}
+                  // onScroll={this.onScroll}
+        />
         <Footer addMsg={this.addMsg}/>
       </StyledTotalDiv>
     )

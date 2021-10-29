@@ -1,6 +1,6 @@
     /* фон самого скроллбара */
-.CHATFIELD::-webkit-scrollbar{ 
-  width: 10px; 
+.CHATFIELD::-webkit-scrollbar{
+  width: 0px; 
   background-color: #00000020;
 }
     /* кнопки направления*/

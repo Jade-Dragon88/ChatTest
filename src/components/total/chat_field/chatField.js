@@ -21,6 +21,7 @@ const StyledChatFieldDiv = styled.div`
 //   height: 100%;
 // `
 let newKey = () => {return Math.random().toString(36).substr(2, 7);};
+
 export default function ChatField(props) {
   const {numOfActiveTab,numOfTabs,messages} = props;
   let tabs = [];

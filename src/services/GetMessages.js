@@ -1,8 +1,9 @@
+import React, { Component } from 'react'
 
-class GetMessages {
+
+class GetMessages extends Component {
+
   _apiBase = 'https://test-chat-backend-hwads.ondigitalocean.app'
-  _apiSkip = 0;
-  _apiLimit = 10;
   getResource = async (url) => {
     let res = await fetch(url)
     if (!res.ok){
@@ -11,8 +12,10 @@ class GetMessages {
     return await res.json();
   }
 
-  getMessages=() => {
-    return this.getResource(`${this._apiBase}/api/messages?skip=${this._apiSkip}&limit=${this._apiLimit}`);
+  getMessages=(apiSkip,apiLimit) => {
+    let AAA = this.getResource(`${this._apiBase}/api/messages?skip=${apiSkip}&limit=${apiLimit}`);
+    console.log(`apiSkip: ${apiSkip}, apiLimit: ${apiLimit}`);
+    return AAA;
   }
 }
 export default GetMessages;

@@ -36,20 +36,9 @@ const StyledImg = styled.img`
 `
 let newKey = () => {return Math.random().toString(36).substr(2, 7);};
 
-
-
-
-
-
-
-
-
-
-
-
 export default function messageBox(props) {
   const {messages = []} = props;
-  console.log(`Длина массива с сообщениями = ${messages.length}`);
+  // console.log(`Длина массива с сообщениями = ${messages.length}`);
   let msgs=[];
   for(let i=0; i<messages.length; i++) {
     const {from,text,
