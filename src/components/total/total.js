@@ -120,6 +120,15 @@ class Total extends Component {
     }));
   }
   addMsg=(text) => {
+    // 2021-10-27T14:28:00.368Z
+    const myTime =  (new Date()).getFullYear()+'-0'+
+                    (new Date()).getMonth()+'-'+
+                    (new Date()).getUTCDate()+'T'+
+                    (new Date()).getUTCHours()+':'+
+                    (new Date()).getMinutes()+':'+
+                    (new Date()).getSeconds()+'.'+
+                    (new Date()).getMilliseconds()+'Z';
+    console.log(myTime);
     this.setState(({messages})=>{
           const newMessage = {
               from :'me',
@@ -129,7 +138,7 @@ class Total extends Component {
               ada: false,
               admin: false,
               moder: false,
-              createdAt: `${(new Date()).getHours()}:${(new Date()).getMinutes()}`,
+              createdAt: myTime,
           };
           const newMessageArr = [...messages, newMessage];
           const newState = this.state;
