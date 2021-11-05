@@ -33,7 +33,7 @@ export default function ChatField(props) {
                   messages = {messages}
                   />)
   };
-  // console.log(tabs);
+  console.log(tabs);
 
   return (
     <StyledChatFieldDiv className="CHATFIELD">
