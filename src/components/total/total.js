@@ -62,16 +62,6 @@ class Total extends Component {
         moder: false,
         createdAt: '2021-10-27T14:28:00.368Z',
       },
-      {
-        from: 'NaTaLi',
-        text: 'Отлично!!!',
-        lvl: Math.floor(Math.random() * 10 + 1),
-        btc: true,
-        ada: false,
-        admin: false,
-        moder: false,
-        createdAt: '2021-10-27T14:28:00.368Z',
-      },
     ],
   };
 
