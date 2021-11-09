@@ -1,18 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import './App.css';
-import Total from './components/total/total'
+import Total from './components/total/total';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
+
   render() {
     return (
-      <div className="App">
-        <Total/>
+      <div className='App'>
+        <Total />
       </div>
-    )
+    );
   }
 }
 
