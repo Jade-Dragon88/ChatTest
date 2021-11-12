@@ -17,6 +17,7 @@ const StyledTotalDiv = styled.div`
   border-radius: 20px;
   z-index: -1;
 `;
+
 class Total extends Component {
   state = {
     numOfActiveTab: 0,
